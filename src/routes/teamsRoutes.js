@@ -5,9 +5,9 @@ const router = express.Router();
 const { insertTeams, getAllTeams, getTeamById, getTeamsByCity } = require("../controller/teamsController");
 
 // routes 
-router.post("/teams/insert", insertTeams);
-router.get("/teams", getAllTeams);
-router.get("/teams/:id", getTeamById);
-router.get("/teams/city/:city", getTeamsByCity);
+router.post("/insert", insertTeams);
+router.get("/", getAllTeams);
+router.get("/:id", getTeamById);
+router.get("/city/:city", getTeamsByCity);
 
 module.exports = router;

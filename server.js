@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-app.use("/api", teamsRoutes)
+app.use("/teams", teamsRoutes)
 
 // Start the server
 app.listen(PORT, () => {
