@@ -49,6 +49,20 @@
 					displayResults({ error: 'Error fetching teams' });
 				}
 			});
+
+			// Get team by ID
+			getTeamByIdBtn.addEventListener('click', async () => {
+				const teamId = prompt('Enter team ID:');
+				if (!teamId) return;
+
+				try {
+					const response = await fetch(`${API_URL}/${teamId}`);
+					const data = await response.json();
+					displayResults(data);
+				} catch (error) {
+					displayResults({ error: 'Error fetching team' });
+				}
+			});
 		</script>
 	</body>
 </html>
