@@ -63,6 +63,20 @@
 					displayResults({ error: 'Error fetching team' });
 				}
 			});
+
+			// Get teams by city
+			getTeamsByCityBtn.addEventListener('click', async () => {
+				const city = prompt('Enter city name:');
+				if (!city) return;
+
+				try {
+					const response = await fetch(`${API_URL}/city/${city}`);
+					const data = await response.json();
+					displayResults(data);
+				} catch (error) {
+					displayResults({ error: 'Error fetching teams' });
+				}
+			});
 		</script>
 	</body>
 </html>
