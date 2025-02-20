@@ -3,6 +3,7 @@
 	"author": "Omer Cagri Sayir",
 	"version": "1.0.0",
 	"description": "MDEV1004 - Midterm",
+	"type": "commonjs",
 	"main": "server.js",
 	"scripts": {
 		"start": "node server.js",

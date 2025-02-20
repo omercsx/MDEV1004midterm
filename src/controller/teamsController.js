@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const Team = require("../model/Team");
 
 // For database connection 
-export const connectDb = async () => {
+const connectDb = async () => {
   try {
     const conn = await mongoose.connect("mongodb+srv://user3:user3@cluster0.wljfh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
     console.log(`MongoDB Connected: ${conn.connection.host}`);
@@ -94,4 +94,4 @@ const getTeamsByCity = async (req, res) => {
   }
 };
 
-export { insertTeams, getAllTeams, getTeamById, getTeamsByCity };
+module.exports = { insertTeams, getAllTeams, getTeamById, getTeamsByCity, connectDb };
