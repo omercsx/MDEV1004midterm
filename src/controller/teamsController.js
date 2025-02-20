@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import mongoose from "mongoose";
+import Team from "../model/Team";
 
 // For database connection 
 export const connectDb = async () => {
@@ -10,5 +11,30 @@ export const connectDb = async () => {
   } catch (error) {
     console.log(error);
     process.exit(1);
+  }
+}
+
+// Inserting data into the database
+const insertTeams = async (req, res) => {
+  try {
+    const filePath = path.join(__dirname, "../../teams.json");
+    const teams = JSON.parse(fs.readFileSync(filePath, "utf8"));
+    await connectDb();
+    const insertedTeams = await Team.find({});
+    if (insertedTeams.length > 0) {
+      res.status(200).json({
+        message: "Teams already inserted"
+      })
+      return;
+    }
+    await Team.insertMany(teams);
+    res.status(201).json({
+      message: "Teams inserted successfully"
+    })
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Error inserting teams"
+    })
   }
 }
