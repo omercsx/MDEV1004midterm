@@ -21,21 +21,33 @@ const insertTeams = async (req, res) => {
     const teams = JSON.parse(fs.readFileSync(filePath, "utf8"));
     await connectDb();
     const insertedTeams = await Team.find({});
+
     if (insertedTeams.length > 0) {
-      res.status(200).json({
-        message: "Teams already inserted"
-      })
-      return;
+      if (res) {
+        return res.status(200).json({
+          message: "Teams already inserted"
+        });
+      }
+      return console.log("Teams already inserted");
     }
+
     await Team.insertMany(teams);
-    res.status(201).json({
-      message: "Teams inserted successfully"
-    })
+
+    if (res) {
+      return res.status(201).json({
+        message: "Teams inserted successfully"
+      });
+    }
+    return console.log("Teams inserted successfully");
+
   } catch (error) {
     console.log(error);
-    res.status(500).json({
-      message: "Error inserting teams"
-    })
+    if (res) {
+      return res.status(500).json({
+        message: "Error inserting teams"
+      });
+    }
+    console.error("Error inserting teams");
   }
 }
 
