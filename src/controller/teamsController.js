@@ -55,3 +55,23 @@ const getAllTeams = async (req, res) => {
     })
   }
 }
+
+// Get a team by id
+const getTeamById = async (req, res) => {
+  try {
+    await connectDb();
+    const team = await Team.findOne({ teamId: req.params.id });
+    if (!team) {
+      return res.status(404).json({
+        message: "Team not found"
+      });
+    }
+    res.status(200).json(team);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Error fetching team"
+    });
+  }
+};
+
