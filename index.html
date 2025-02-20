@@ -30,7 +30,25 @@
 			const getTeamByIdBtn = document.getElementById('getTeamById');
 			const getTeamsByCityBtn = document.getElementById('getTeamsByCity');
 			const resultsDiv = document.getElementById('results');
-			// This includes fetching data from the REST API and handling the responses.
+
+			// Base URL for API
+			const API_URL = 'http://localhost:3000/teams';
+
+			// Function to display results
+			const displayResults = data => {
+				resultsDiv.textContent = JSON.stringify(data, null, 2);
+			};
+
+			// Get all teams
+			getAllTeamsBtn.addEventListener('click', async () => {
+				try {
+					const response = await fetch(API_URL);
+					const data = await response.json();
+					displayResults(data);
+				} catch (error) {
+					displayResults({ error: 'Error fetching teams' });
+				}
+			});
 		</script>
 	</body>
 </html>
