@@ -1,7 +1,7 @@
-import fs from "fs";
-import path from "path";
-import mongoose from "mongoose";
-import Team from "../model/Team";
+const fs = require("fs");
+const path = require("path");
+const mongoose = require("mongoose");
+const Team = require("../model/Team");
 
 // For database connection 
 export const connectDb = async () => {
