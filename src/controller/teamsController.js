@@ -38,3 +38,20 @@ const insertTeams = async (req, res) => {
     })
   }
 }
+
+// Get all teams
+const getAllTeams = async (req, res) => {
+  try {
+    await connectDb();
+    const teams = await Team.find({});
+    res.status(200).json({
+      message: "Teams fetched successfully",
+      teams
+    })
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Error fetching teams"
+    })
+  }
+}
